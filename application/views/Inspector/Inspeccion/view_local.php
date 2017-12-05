@@ -37,7 +37,7 @@
       <input type="hidden" name="idsolicitud" value="<?php echo $solicitud->idsolicitud; ?>">
       <button class="form-control btn btn-info" name="section_post" value="update_solicitud" type="submit">Solicitud</button>
       </form>
-      <form method="post">
+      <form method="post" action="<?php echo base_url('Inspector/Inspecciones') ?>">
       <button class="form-control btn btn-info" name="section_post" value="update" type="submit">Inspección</button>
       <input type="hidden" name="idsolicitud" value="<?php echo $solicitud->idsolicitud; ?>">
       </form>

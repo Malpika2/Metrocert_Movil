@@ -15,4 +15,13 @@ class mUnidad_produccion extends CI_Model
 		$result = $r->result();
 		return $result;
 	}
+	public function getUnidadesPorProduccion($idoperador,$idUnidadProduccion){
+		$this->emetro_local->select('*');
+		$this->emetro_local->FROM('unidad_produccion');
+		$this->emetro_local->where('idoperador',$idoperador);
+		$this->emetro_local->where('idunidad_produccion',$idUnidadProduccion);
+		$r = $this->emetro_local->get();
+		$result= $r->result();
+		return $result;
+	}
 }

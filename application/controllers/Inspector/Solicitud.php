@@ -23,6 +23,8 @@ class solicitud extends CI_Controller
 			$data['row_nombre_categoria'][$s_c_certificacion->idcategoria_certificacion] =  $this->mSolicitud->getnombre_categoria($s_c_certificacion->idcategoria_certificacion);
 		}
 
+		
+
 		$data['row_solicitud_categoria_certificacion'] = $solicitud_categoria_certificacion;
 		$idsolicitud = $this->input->post('idsolicitud');
 		$data['row_solicitud'] = $this->mSolicitud->getSolicitud_Local_porId($idsolicitud);
