@@ -44,7 +44,7 @@
       </td>
       
       <td>
-      <form method="post">
+      <form method="post" action="<?php echo base_url('Inspector/Pmo'); ?>">
 <button class="form-control btn btn-primary" name="section_post" value="ri_cultivo" type="submit">PMO</button>
 <input type="hidden" name="MM_insert" value="formaaa"> 
 <input type="hidden" name="pmo" value="1"> 
@@ -53,20 +53,20 @@
       </td>
       
       <td>
-      <form method="post">
+      <form method="post" action="<?php echo base_url('Inspector/R_ins'); ?>">
 <button class="form-control btn btn-primary" name="section_post" value="ri_cultivo" type="submit">REPORTE INS</button>
 <input type="hidden" name="MM_insert" value="formaaa"> 
 <input type="hidden" name="id" value="<?php echo $solicitud->idsolicitud; ?>">
 </form>
       </td>
       
-      <td>
+<!--       <td>
       <form method="post">
 <button class="form-control btn btn-default" name="section_post" value="ri_cultivo" type="submit">Estado</button>
 <input type="hidden" name="MM_insert" value="formaaa"> 
 <input type="hidden" name="id" value="<?php echo $solicitud->idsolicitud; ?>">
 </form>
-      </td>
+      </td> -->
       
       <td>
       <a href="index.php?online=0&enviar=1&idsolicitud=<?php echo $solicitud->idsolicitud; ?>">Enviar</a>
