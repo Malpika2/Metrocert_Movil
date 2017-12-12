@@ -9,13 +9,15 @@ class inspecciones extends CI_Controller
 		$this->load->model('Inspector/mOperadores');
 		$this->load->model('Inspector/mInspeccion');
 		$this->load->model('Inspector/mInspector');
-		$this->load->model('Inspector/mOrdenInspeccion');
 		$this->load->model('Inspector/mSolicitud_producto');
 		$this->load->model('Inspector/mUnidad_produccion');
 		$this->load->model('Inspector/mSolicitud_proceso');
 		$this->load->model('Inspector/mProceso');
+		$this->load->model('Inspector/mOrden_inspeccion');
 		$this->load->model('Inspector/mInspeccion_indicacion');
 		$this->load->model('Inspector/mInspeccion_accion_correctiva_previa');
+		$this->load->model('Inspector/mPo_cultivo_respuesta');
+		$this->load->model('Inspector/mInspeccion_reporte_respuesta');
 
 	}
 	public function index(){
@@ -44,7 +46,7 @@ class inspecciones extends CI_Controller
 		$data['row_operador'] = $this->mOperadores->getOperador($row_solicitud->idoperador);
 		$data['row_solicitud'] = $row_solicitud;
 		$data['row_inspeccion'] = $row_inspeccion;
-		$data['row_orden_inspeccion'] = $this->mOrdenInspeccion->getOrdenInspeccion($idsolicitud);
+		$data['row_orden_inspeccion'] = $this->mOrden_inspeccion->getOrdenInspeccion($idsolicitud);
 
 		foreach ($row_inspeccion as $inspeccion){
 			$data['row_inspector'][$inspeccion->idinspeccion] = $this->mInspector->getInspector($inspeccion->idinspector);
@@ -57,7 +59,29 @@ class inspecciones extends CI_Controller
 		$this->mSolicitud->Descargar($idsolicitud);
 		$this->load->view('Inspector/vHeader');
 		$this->load->view('Inspector/Inspeccion/vR_Descarga');
-		$this->load->view('Inspector/vFooter');
-		
+		$this->load->view('Inspector/vFooter');	
+	}
+	public function Enviar(){
+		$idsolicitud = $this->input->post('idsolicitud');
+	 // echo "<br>Inicio de envio de datos";
+		$respuesta = $this->mPo_cultivo_respuesta->getRespuesta_idSol($idsolicitud);
+		$this->mPo_cultivo_respuesta->EliminarResp_online($idsolicitud);
+		foreach ($respuesta as $row_respuesta) {
+			$this->mPo_cultivo_respuesta->insert_online($row_respuesta);
+		}
+	// echo "<br>Plan orgánico enviado";
+		$respuesta_inspeccion = $this->mInspeccion_reporte_respuesta->getLocal_idSol($idsolicitud);
+		$this->mInspeccion_reporte_respuesta->EliminarResp_online($idsolicitud);
+		foreach ($respuesta_inspeccion as $row_resp_ins) {
+			$this->mInspeccion_reporte_respuesta->insert_online($row_resp_ins);
+		}
+	// echo "<br>Reporte de inspección enviado";
+
+	// echo "<br>Envio de datos terminado";
+		return true;
+	}
+	public function autorizacion_orden(){
+		$idsolicitud = $this->input->post('idsolicitud');
+		$this->mOrden_inspeccion->autorizacion_orden($idsolicitud);
 	}
 }

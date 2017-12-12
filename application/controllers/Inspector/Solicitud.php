@@ -48,6 +48,14 @@ class solicitud extends CI_Controller
 		$this->load->view('Inspector/Inspeccion/vSolicitud',$data);
 		$this->load->view('Inspector/vFooter');
 	}
+	public function firmar_solicitud(){
+		$idsolicitud = $this->input->post('idsolicitud');
+		$firma_nombre = $this->input->post('firma_nombre');
+		$this->mSolicitud->updateSolicitud($idsolicitud,$firma_nombre);
+	}
+	public function revision_solicitud(){
+		$idsolicitud = $this->input->post('idsolicitud');
+		$this->mSolicitud->revision_solicitud($idsolicitud);
 
-
+	}
 }

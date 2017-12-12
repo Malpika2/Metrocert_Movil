@@ -374,13 +374,13 @@ foreach ($row_procesos as $procesos) {
     </div>
     <div class="panel-body">
     <table class="table lead">
-<form action="#firma" method="post" >
+<form id="form_firma" action="<?php echo base_url('Inspector/Solicitud/firmar_solicitud') ?>" method="post" >
 <tr>
 <td>
-<input <?php  if(strlen($row_solicitud->firma_nombre)>0){?> disabled="disabled" <?php  }?>placeholder="Escriba el nombre de la persona que envía la solicitud" class="form-control" type="text" name="firma_nombre" value="<?php  echo $row_solicitud->firma_nombre;?>" />
+<input <?php  if(strlen($row_solicitud->firma_nombre)>0){?> disabled="disabled" <?php  }?>placeholder="Escriba el nombre de la persona que envía la solicitud" class="form-control" type="text" id="firma_nombre" name="firma_nombre" value="<?php  echo $row_solicitud->firma_nombre;?>" />
 </td>
 <td>
-<input disabled="disabled" class="form-control" type="text" name="firma_fecha" value="<?php  if($row_solicitud->firma_fecha>0){echo date("Y-m-d",$row_solicitud->firma_fecha);}?>" />
+<input disabled="disabled" class="form-control" type="text" id="firma_fecha" name="firma_fecha" value="<?php  if($row_solicitud->firma_fecha>0){echo date("Y-m-d",$row_solicitud->firma_fecha);}?>" />
 </td>
 <td>
 <input type="hidden" name="idsolicitud" value="<?php  echo $row_solicitud->idsolicitud; ?>" />
@@ -401,11 +401,12 @@ foreach ($row_procesos as $procesos) {
     </div>
     <div class="panel-body">
     <table class="table lead">
-<form action="#revision" method="post" >
+<form id="form_revision_solicitud" action="<?php echo  base_url('Inspector/Solicitud/revision_solicitud'); ?>" method="post" >
 <tr>
 <td>
 <input  disabled="disabled" placeholder="Nombre" class="form-control" type="text" name="revision_nombre" value="<?php  echo $row_solicitud->revision_nombre;?>" />
 </td>
+<?php echo $this->session->userdata('MM_Username'); ?>
 <td>
 <input disabled="disabled" class="form-control" type="text" name="revision_fecha" value="<?php if($row_solicitud->revision_fecha>0){echo date("Y-m-d",$row_solicitud->revision_fecha);}?>" />
 </td>

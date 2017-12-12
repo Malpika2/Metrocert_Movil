@@ -9,6 +9,7 @@
           <input type="hidden" name="online" id="online" value="1">
           <button type="submit" class="btn btn-primary">INSPECCIONES ASIGNADAS</button>
         </form>
+        <div id="MensajeEnvio" name="MensajeEnvio"></div>
         <br>
         <table class="table table-bordered table-striped table-hover table-condensed" >
           <thead>
@@ -68,9 +69,9 @@
 </form>
       </td> -->
       
-      <td>
-      <a href="index.php?online=0&enviar=1&idsolicitud=<?php echo $solicitud->idsolicitud; ?>">Enviar</a>
-      </td>
+    <td>
+      <button class="btn btn-default btn-sm btn-link" onclick="EnviarInspeccion(<?php echo $solicitud->idsolicitud?>)">Enviar</button>
+    </td>
       
           
     </tr>   
@@ -84,3 +85,6 @@
       </div>
     </div>
 </div>
+<script type="text/javascript">
+  var baseurl = "<?php echo base_url(); ?>";
+</script>

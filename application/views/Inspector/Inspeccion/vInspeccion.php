@@ -403,7 +403,7 @@ foreach ($row_inspeccion_accion_correctiva_previa as $accionCorrectiva) {
     </div>
     <div class="panel-body">
     <table class="table lead">
-<form action="#revision" method="post" >
+<form id="form_autorizacion_orden" action="<?php echo base_url('Inspector/Inspecciones/autorizacion_orden'); ?>" method="post" >
 <tr>
 <td>
 <input  disabled="disabled" placeholder="Nombre" class="form-control" type="text" name="autorizacion_nombre" value="<?php  echo $row_orden_inspeccion->autorizacion_nombre;?>" />
