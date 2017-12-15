@@ -21,7 +21,6 @@ $('#MensajeEnvio').append('<div class="alert alert-warning alert-dismissable fad
 }
 
 $('#form, #fat, #form_firma').submit(function() {
-      // $(this).preventDefault();
           $.ajax({
               type:'POST',
               url:$(this).attr('action'),
@@ -33,7 +32,6 @@ $('#form, #fat, #form_firma').submit(function() {
         return false;
 });
 $('#form, #fat, #form_revision_solicitud').submit(function() {
-	alert('form_revision_solicitud');
           $.ajax({
               type:'POST',
               url:$(this).attr('action'),
@@ -43,3 +41,26 @@ $('#form, #fat, #form_revision_solicitud').submit(function() {
           });
         return false;
 });
+//Inspeccion
+$('#form, #fat, #form_autorizacion_orden').submit(function() {
+          $.ajax({
+              type:'POST',
+              url:$(this).attr('action'),
+              data:$(this).serialize(),
+              success: function(data) { 
+              }
+          });
+        return false;
+});
+//PMO
+$('#form, #fat, #form_GuardarPregunta').submit(function(){
+          $.ajax({
+              type:'POST',
+              url:$(this).attr('action'),
+              data:$(this).serialize(),
+              success: function(data) { 
+              }
+          });
+        return false;
+});
+

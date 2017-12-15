@@ -40,4 +40,44 @@ class mInspeccion_reporte_respuesta extends CI_Model
 		$this->emetro_online->INSERT('inspeccion_reporte_respuesta',$datos);
 		return true;
 	}
+
+	public function numTotal($data){
+		$this->emetro_local->select('*');
+		$this->emetro_local->from('inspeccion_reporte_respuesta');
+		$this->emetro_local->where('idsolicitud',$data['idsolicitud']);
+		$this->emetro_local->where('idinspeccion_reporte_pregunta',$data['idinspeccion_reporte_pregunta']);
+		$r = $this->emetro_local->get();
+		$result = $r->num_rows();
+		 return $result;
+	}
+	public function insert_local($data){						
+		if (null==$data['observacion']) {
+			$data['observacion']='';
+		}
+		$datos = array(
+						'idinspeccion_reporte_pregunta' => $data['idinspeccion_reporte_pregunta'],
+						'idsolicitud' => $data['idsolicitud'],
+						'respuesta' => $data['respuesta'],
+						'observacion' => $data['observacion']
+					);
+		$this->emetro_local->INSERT('inspeccion_reporte_respuesta',$datos);
+	}
+	public function update_local($data){
+		$datos = array(
+			'respuesta' => $data['respuesta'],
+			'observacion' => $data['observacion']
+		);
+		$this->emetro_local->where('idinspeccion_reporte_pregunta',$data['idinspeccion_reporte_pregunta']);
+		$this->emetro_local->where('idsolicitud',$data['idsolicitud']);
+		$this->emetro_local->update('inspeccion_reporte_respuesta',$datos);
+
+	}
+	public function updateObservacion($data){
+		$datos = array(
+			'observacion' => $data['observacion']);
+			$this->emetro_local->where('idinspeccion_reporte_pregunta',$data['idinspeccion_reporte_pregunta']);
+			$this->emetro_local->where('idsolicitud',$data['idsolicitud']);
+
+			$this->emetro_local->update('inspeccion_reporte_respuesta',$datos);
+	}
 }

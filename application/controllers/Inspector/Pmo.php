@@ -27,4 +27,22 @@ class pmo extends CI_Controller
 		$this->load->view('Inspector/Inspeccion/vPmo',$data);
 		$this->load->view('Inspector/vFooter');
 	}
+	public function guardar_pregunta_pmo(){
+		$idsolicitud = $this->input->post('idsolicitud');
+		$idpregunta = $this->input->post('idpregunta');
+		$num_preguntas = $this->mPo_cultivo_respuesta->guardar_pregunta_pmo($idsolicitud,$idpregunta);
+		if ($num_preguntas==0) {	
+			$data['idpregunta'] = $this->input->post('idpregunta');
+			$data['idsolicitud'] = $this->input->post('idsolicitud');
+			$data['implementacion'] = $this->input->post('implementacion');
+			$data['conformidad'] = $this->input->post('conformidad');
+		$this->mPo_cultivo_respuesta->insertar_local($data);
+		}else{
+			$data['idpregunta'] = $this->input->post('idpregunta');
+			$data['idsolicitud'] = $this->input->post('idsolicitud');
+			$data['implementacion'] = $this->input->post('implementacion');
+			$data['conformidad'] = $this->input->post('conformidad');
+			$this->mPo_cultivo_respuesta->update_local($data);
+		}
+	}
 }

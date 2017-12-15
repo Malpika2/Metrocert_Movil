@@ -1,3 +1,4 @@
+<iframe name="destino" width="100" height="2" frameborder="0" ></iframe>
 <div class="container-fluid">
     <div class="row">
       <div class="col-sm-12  col-md-12 main">
@@ -34,7 +35,7 @@ foreach ($row_po_cultivo_pregunta as $po_cultivo_pregunta) {
      
 
 <?php  } elseif($po_cultivo_pregunta->tipo==3){  ?> 
-<form target="destino" action="section/inspeccion/guardar_pregunta_pmo.php" method="post" name="form1b" id="<?php echo $po_cultivo_pregunta->idpo_cultivo_pregunta;?>">
+<form target="destino" action="<?php echo base_url('Inspector/Pmo/guardar_pregunta_pmo'); ?>" method="post" name="form_GuardarPregunta" id="form_GuardarPregunta">
 <tr>
 <td colspan="2"> <?php  echo utf8_decode($po_cultivo_pregunta->texto1);?><br />
 <strong>Resp</strong>: <?php echo $row_resp[$po_cultivo_pregunta->idpo_cultivo_pregunta]['respuesta']; ?><br />
@@ -44,11 +45,11 @@ foreach ($row_po_cultivo_pregunta as $po_cultivo_pregunta) {
 <tr>
 <td>
 Implementación:
-<input class="form-control"type="text" name="implementacion" value="<?php echo $row_resp[$po_cultivo_pregunta->idpo_cultivo_pregunta]['implementacion']; ?>" onchange="this.form.submit()"/>
+<input class="form-control"type="text" name="implementacion" value="<?php echo $row_resp[$po_cultivo_pregunta->idpo_cultivo_pregunta]['implementacion']; ?>" onchange="this.form.submit();"/>
 </td>
 <td>
 Conformidad:<br />
-<select name="conformidad"  onchange="this.form.submit()">
+<select name="conformidad"  onchange="this.form.submit();">
   <option value="" >Selecciona</option>
   <option value="CUMPLE" <?php  if (!(strcmp("CUMPLE", $row_resp[$po_cultivo_pregunta->idpo_cultivo_pregunta]['conformidad']))) {echo "selected=\"selected\"";} ?>>CUMPLE</option>
   <option value="NO CUMPLE" <?php  if (!(strcmp("NO CUMPLE", $row_resp[$po_cultivo_pregunta->idpo_cultivo_pregunta]['conformidad']))) {echo "selected=\"selected\"";} ?>>NO CUMPLE</option>
@@ -63,7 +64,7 @@ Conformidad:<br />
 <input type="hidden" name="MM_insertb" value="form1b" />
 </form>
 <?php  } else if($po_cultivo_pregunta->tipo==4){  ?> 
-<form target="destino" action="section/inspeccion/guardar_pregunta_pmo.php" method="post" name="form1b" id="<?php  echo $po_cultivo_pregunta->idpo_cultivo_pregunta;?>">
+<form target="destino" action="<?php echo base_url('Inspector/Pmo/guardar_pregunta_pmo'); ?>" method="post" name="form_GuardarPregunta" id="form_GuardarPregunta">
 <tr>     
 <td colspan="2" align="left">
 <b><?php  echo utf8_decode($po_cultivo_pregunta->texto1);?></b>
@@ -96,11 +97,11 @@ Com: <?php  echo $row_resp[$po_cultivo_pregunta->idpo_cultivo_pregunta]['comenta
 <tr>
 <td>
 Implementación:
-<input class="form-control"type="text" name="implementacion" value="<?php  echo $row_resp[$po_cultivo_pregunta->idpo_cultivo_pregunta]['implementacion']; ?>" onchange="this.form.submit()"/>
+<input class="form-control"type="text" name="implementacion" value="<?php  echo $row_resp[$po_cultivo_pregunta->idpo_cultivo_pregunta]['implementacion']; ?>" onchange="this.form.submit();"/>
 </td>
 <td>
 Conformidad:<br />
-<select name="conformidad" onchange="this.form.submit()">
+<select name="conformidad" onchange="this.form.submit();">
   <option value="" >Selecciona</option>
   <option value="CUMPLE" <?php  if (!(strcmp("CUMPLE", $row_resp[$po_cultivo_pregunta->idpo_cultivo_pregunta]['conformidad']))) {echo "selected=\"selected\"";} ?>>CUMPLE</option>
   <option value="NO CUMPLE" <?php  if (!(strcmp("NO CUMPLE", $row_resp[$po_cultivo_pregunta->idpo_cultivo_pregunta]['conformidad']))) {echo "selected=\"selected\"";} ?>>NO CUMPLE</option>
