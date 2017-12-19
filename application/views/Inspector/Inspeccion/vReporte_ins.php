@@ -72,7 +72,7 @@ foreach ($row_inspeccion_reporte_pregunta as $inspeccion_reporte_pregunta){
     <td> 
 <?php  
  if(strlen($inspeccion_reporte_pregunta->direccion_formulario)>0){ ?>
- 	  <table align="center" class="table table-bordered table-condensed" style="background-color: red">
+ 	  <table align="center" class="table table-bordered table-condensed">
       <tr class="warning">
         <td width="1">Nº</td>
         <td>No conformidad</td>

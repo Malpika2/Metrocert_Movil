@@ -32,10 +32,11 @@
   
   <tr>
   <td>
-  
+  <?php echo json_encode($row_inspeccion); ?>
 <table class="table">
+  
 <?php
-foreach ($row_inspeccion as $inspeccion) {
+  foreach ($row_inspeccion as $inspeccion){
 ?>
 <tr>
 <td><?php echo $row_inspector[$inspeccion->idinspeccion]->nombre.' '.$row_inspector[$inspeccion->idinspeccion]->apellido;?></td>

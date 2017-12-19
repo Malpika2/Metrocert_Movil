@@ -37,6 +37,7 @@ $('#form, #fat, #form_revision_solicitud').submit(function() {
               url:$(this).attr('action'),
               data:$(this).serialize(),
               success: function(data) { 
+                $('#inputSubmitForm').prop("disabled",true);
               }
           });
         return false;

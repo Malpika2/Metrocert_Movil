@@ -247,8 +247,8 @@ foreach ($row_producto as $producto) {
   <td>
 <?php
   foreach ($row_unidades as $unidades) {
-    if ($row_producto->idunidad_produccion===$row_unidades->idunidad_produccion){
-       echo $row_unidades['unidad_produccion'];
+    if ($producto->idunidad_produccion===$unidades->idunidad_produccion){
+       echo $unidades->unidad_produccion;
     }
   }
 ?>
@@ -406,7 +406,6 @@ foreach ($row_procesos as $procesos) {
 <td>
 <input  disabled="disabled" placeholder="Nombre" class="form-control" type="text" name="revision_nombre" value="<?php  echo $row_solicitud->revision_nombre;?>" />
 </td>
-<?php echo $this->session->userdata('MM_Username'); ?>
 <td>
 <input disabled="disabled" class="form-control" type="text" name="revision_fecha" value="<?php if($row_solicitud->revision_fecha>0){echo date("Y-m-d",$row_solicitud->revision_fecha);}?>" />
 </td>
@@ -414,7 +413,7 @@ foreach ($row_procesos as $procesos) {
 <input type="hidden" name="idsolicitud" value="<?php  echo $row_solicitud->idsolicitud; ?>" />
 <input type="hidden" name="section_post" value="update" />
 <input type="hidden" name="revision_solicitud" value="1" />
-<input class="form-control btn btn-success" type="submit" <?php if(strlen($row_solicitud->revision_nombre)>0){?> disabled="disabled" <?php  }?> value="Guardar" />
+<input id="inputSubmitForm" class="form-control btn btn-success" type="submit" <?php if(strlen($row_solicitud->revision_nombre)>0){?> disabled="disabled" <?php  }?> value="Guardar" />
 </td>
 </tr>
 </form>
