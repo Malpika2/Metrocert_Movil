@@ -47,19 +47,34 @@ class login extends CI_Controller
 	}
 
 	public function inspecciones_Asignadas_online(){
-		$solicitudes_online = $this->mSolicitud->getSolicitudes_online();
-		$data['row_Solicitudes_online'] = $solicitudes_online;
+		$Inspecciones_online = $this->mSolicitud->getInspecciones_online();
 
+		foreach ($Inspecciones_online as $inspeccion) {
+			$data['row_Solicitudes_online'][$inspeccion->idsolicitud] = $this->mSolicitud->getSolicitudes_online($inspeccion->idsolicitud);	
+			$solicitudes_online = $this->mSolicitud->getSolicitudes_online($inspeccion->idsolicitud);
 
-		foreach ($solicitudes_online as $solicitud_online) {
-			$orden_inspeccion_online = $this->mOrden_Inspeccion->getOrden_Inspeccion_Online($solicitud_online->idsolicitud);
-			$data['row_orden_inspeccion_online'][$solicitud_online->idsolicitud] = $orden_inspeccion_online;
+			$orden_inspeccion_online = $this->mOrden_Inspeccion->getOrden_Inspeccion_Online($inspeccion->idsolicitud);
+			$data['row_orden_inspeccion_online'][$inspeccion->idsolicitud] = $orden_inspeccion_online;
 
-			if ($orden_inspeccion_online->autorizacion_fecha >1) {
-				$row_operador_online = $this->mOperadores->getOperador_online($solicitud_online->idoperador);
-				$data['row_operador_online'][$solicitud_online->idsolicitud] = $row_operador_online;
+			if ($orden_inspeccion_online->autorizacion_fecha>1) {
+				$row_operador_online = $this->mOperadores->getOperador_online($solicitudes_online->idoperador);
+				$data['row_operador_online'][$inspeccion->idsolicitud] = $row_operador_online;
 			}
+
 		}
+		// $solicitudes_online = $this->mSolicitud->getSolicitudes_online();
+		// $data['row_Solicitudes_online'] = $solicitudes_online;
+
+
+		// foreach ($solicitudes_online as $solicitud_online) {
+		// 	$orden_inspeccion_online = $this->mOrden_Inspeccion->getOrden_Inspeccion_Online($solicitud_online->idsolicitud);
+		// 	$data['row_orden_inspeccion_online'][$solicitud_online->idsolicitud] = $orden_inspeccion_online;
+
+		// 	if ($orden_inspeccion_online->autorizacion_fecha >1) {
+		// 		$row_operador_online = $this->mOperadores->getOperador_online($solicitud_online->idoperador);
+		// 		$data['row_operador_online'][$solicitud_online->idsolicitud] = $row_operador_online;
+		// 	}
+		// }
 		$this->load->view('Inspector/vHeader');
 		$this->load->view('Inspector/Inspeccion/view_online',$data);
 		$this->load->view('Inspector/vFooter');

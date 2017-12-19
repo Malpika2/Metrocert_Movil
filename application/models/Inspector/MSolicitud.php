@@ -26,19 +26,20 @@ class mSolicitud extends CI_Model
 		$result = $r->row();
 		return $result;
 	}
-	public function getSolicitudes_online(){
-
+	public function getInspecciones_online(){
 		$this->emetro_online->select('*');
 		$this->emetro_online->from('inspeccion');
 		$this->emetro_online->where('idinspector',$_SESSION['idinspector']);
 		$r = $this->emetro_online->get();
-		$r = $r->row();
-
+		$r = $r->result();	
+		return $r;
+	}
+	public function getSolicitudes_online($idsolicitud){
 		$this->emetro_online->select('*');
 		$this->emetro_online->from('solicitud');
-		$this->emetro_online->where_in('idsolicitud',$r->idsolicitud);
+		$this->emetro_online->where_in('idsolicitud',$idsolicitud);
 		$rs = $this->emetro_online->get();
-		$res =  $rs->result();
+		$res =  $rs->row();
 		return $res;
 	}
 	public function Descargar($idsolicitud){
