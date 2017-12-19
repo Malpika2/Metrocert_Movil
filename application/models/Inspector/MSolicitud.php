@@ -82,7 +82,7 @@ class mSolicitud extends CI_Model
 		$this->emetro_local->delete('inspeccion_indicacion');
 		foreach ($result as $row_inspeccion_indicacion) {
 			$datos = array(
-				'idinspeccion_indicacion' => $row_inspeccion_indicacion->idinspeccion_indicacion,
+				// 'idinspeccion_indicacion' => $row_inspeccion_indicacion->idinspeccion_indicacion,
 				'idsolicitud' => $row_inspeccion_indicacion->idsolicitud,
 				'indicacion' => $row_inspeccion_indicacion->indicacion);
 			$this->emetro_local->insert('inspeccion_indicacion',$datos);
@@ -337,9 +337,9 @@ class mSolicitud extends CI_Model
 		foreach ($result as $row_inspeccion) {	
 
 			$datos = array(
-			'idsolicitud_categoria_certificacion' => $row_inspeccion['idsolicitud_categoria_certificacion'],
-			'idsolicitud' => $row_inspeccion['idsolicitud'],
-			'idcategoria_certificacion' => $row_inspeccion['idcategoria_certificacion']);
+			'idsolicitud_categoria_certificacion' => $row_inspeccion->idsolicitud_categoria_certificacion,
+			'idsolicitud' => $row_inspeccion->idsolicitud,
+			'idcategoria_certificacion' => $row_inspeccion->idcategoria_certificacion);
 
 			$this->emetro_local->insert('solicitud_categoria_certificacion',$datos);
 		}
@@ -442,10 +442,12 @@ class mSolicitud extends CI_Model
 
 		$this->emetro_local->where('idsolicitud',$idsolicitud);
 		$this->emetro_local->delete('inspeccion');
+		$borradas = $this->emetro_local->affected_rows();
+echo "<script>console.log(".$borradas.")</script>";
 
 		foreach ($result as $row_inspeccion) {
 			$data  = array(
-				'idinspeccion' => $row_inspeccion->idinspeccion,
+				// 'idinspeccion' => $row_inspeccion->idinspeccion,
 				'idsolicitud' => $row_inspeccion->idsolicitud,
 				'idinspector' => $row_inspeccion->idinspector,
 				'inspeccion_tipo' => $row_inspeccion->inspeccion_tipo,
