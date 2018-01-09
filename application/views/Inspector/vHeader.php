@@ -10,6 +10,8 @@
     <!-- Bootstrap -->
     <link href="<?php echo base_url('assets/');?>bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url('assets/');?>files/style.css" rel="stylesheet">
+    <script src="<?php echo base_url('assets/');?>js/canvas2image.js" type="text/javascript"></script>
+    <script src="<?php echo base_url('assets/');?>js/base64.js" type="text/javascript"></script>
   </head>
   <body>
 

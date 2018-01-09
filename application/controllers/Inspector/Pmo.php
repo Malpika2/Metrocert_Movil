@@ -9,6 +9,7 @@ class pmo extends CI_Controller
 		$this->load->model('Inspector/mPo_cultivo_pregunta');
 		$this->load->model('Inspector/mPo_cultivo_respuesta');
 		$this->load->model('Inspector/mPo_cultivo_subpregunta');
+		$this->load->model('Inspector/mFirmas_Inspector');
 	}
 	public function index(){
 		$idsolicitud = $this->input->post('id');
@@ -20,6 +21,7 @@ class pmo extends CI_Controller
 
 		$data['row_po_cultivo_pregunta'] = $row_po_cultivo_pregunta;
 		$data['idsolicitud']= $idsolicitud;
+		$data['row_firma'] = $this->mFirmas_Inspector->getFirmasPmo($idsolicitud);
 
 
 
@@ -44,5 +46,15 @@ class pmo extends CI_Controller
 			$data['conformidad'] = $this->input->post('conformidad');
 			$this->mPo_cultivo_respuesta->update_local($data);
 		}
+	}
+	public function firmar_Pmo(){
+		//Guardar imagen_Firma de los PMO{
+		$fileName = $this->input->post('filename');
+		$data = $this->input->post('base64data'); 
+		$image = explode('base64,',$data); 
+		file_put_contents($fileName.'.png', base64_decode($image[1]));
+		// }
+		$data = $_POST;
+		$this->mFirmas_Inspector->firmar_Pmo($data);
 	}
 }

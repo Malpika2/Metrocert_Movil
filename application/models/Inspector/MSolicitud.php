@@ -37,7 +37,7 @@ class mSolicitud extends CI_Model
 	public function getSolicitudes_online($idsolicitud){
 		$this->emetro_online->select('*');
 		$this->emetro_online->from('solicitud');
-		$this->emetro_online->where_in('idsolicitud',$idsolicitud);
+		$this->emetro_online->where('idsolicitud',$idsolicitud);
 		$rs = $this->emetro_online->get();
 		$res =  $rs->row();
 		return $res;
@@ -419,7 +419,7 @@ class mSolicitud extends CI_Model
 
 		foreach ($result as $row_inspeccion) {
 			$datos = array(
-				'idorden_inspeccion' => $row_inspeccion->idorden_inspeccion,
+				// 'idorden_inspeccion' => $row_inspeccion->idorden_inspeccion,
 				'idsolicitud' => $row_inspeccion->idsolicitud,
 				'inspeccion_inicio' => $row_inspeccion->inspeccion_inicio,
 				'inspeccion_fin' => $row_inspeccion->inspeccion_fin,

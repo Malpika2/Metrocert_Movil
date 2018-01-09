@@ -15,7 +15,6 @@ Escribe en los campos sombreados en Rojo la información que se te pide
 </div>
 */ ?>
 <div id="cuerpo" class="col-lg-10" >
-  <h3>Orden de inspección</h3>
   <div class="panel panel-default">
   <div class="panel-heading" align="center">
   <h4>SOLICITUD DE INSPECCIÓN Y CERTIFICACIÓN ORGÁNICA</h4>
@@ -418,6 +417,7 @@ foreach ($row_procesos as $procesos) {
 </tr>
 </form>
     </table>
+
     </div>
     </div>
 </div>

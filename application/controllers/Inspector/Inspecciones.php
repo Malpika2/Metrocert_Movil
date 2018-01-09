@@ -18,6 +18,7 @@ class inspecciones extends CI_Controller
 		$this->load->model('Inspector/mInspeccion_accion_correctiva_previa');
 		$this->load->model('Inspector/mPo_cultivo_respuesta');
 		$this->load->model('Inspector/mInspeccion_reporte_respuesta');
+		$this->load->model('Inspector/mFirmas_Inspector');
 
 	}
 	public function index(){
@@ -47,6 +48,7 @@ class inspecciones extends CI_Controller
 		$data['row_solicitud'] = $row_solicitud;
 		$data['row_inspeccion'] = $row_inspeccion;
 		$data['row_orden_inspeccion'] = $this->mOrden_inspeccion->getOrdenInspeccion($idsolicitud);
+		$data['row_firma'] = $this->mFirmas_Inspector->getFirmasOrdenInspeccion($idsolicitud);
 
 		foreach ($row_inspeccion as $inspeccion){
 			$data['row_inspector'][$inspeccion->idinspeccion] = $this->mInspector->getInspector($inspeccion->idinspector);
@@ -83,5 +85,15 @@ class inspecciones extends CI_Controller
 	public function autorizacion_orden(){
 		$idsolicitud = $this->input->post('idsolicitud');
 		$this->mOrden_inspeccion->autorizacion_orden($idsolicitud);
+	}
+	public function firmar_Inspeccion(){
+		//Guardar imagen_Firma de las inspecciones{
+		$fileName = $this->input->post('filename');
+		$data = $this->input->post('base64data'); 
+		$image = explode('base64,',$data); 
+		file_put_contents($fileName.'.png', base64_decode($image[1]));
+		// }
+		$data = $_POST;
+		$this->mFirmas_Inspector->firmar_Inspeccion($data);
 	}
 }

@@ -31,6 +31,7 @@ $('#form, #fat, #form_firma').submit(function() {
           });
         return false;
 });
+
 $('#form, #fat, #form_revision_solicitud').submit(function() {
           $.ajax({
               type:'POST',

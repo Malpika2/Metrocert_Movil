@@ -9,6 +9,7 @@
 			$this->load->model('Inspector/mInspeccion_reporte_pregunta');
 			$this->load->model('Inspector/mInspeccion_reporte_respuesta');
 			$this->load->model('Inspector/mInspeccion_accion_correctiva_previa');
+			$this->load->model('Inspector/mFirmas_Inspector');
 		}
 		public function index(){
 			$row_inspeccion_reporte_pregunta = $this->mInspeccion_reporte_pregunta->getinspeccion_reporte_pregunta();
@@ -19,6 +20,9 @@
 			}
 			$data['row_inspeccion_accion_correctiva_previa'] = $this->mInspeccion_accion_correctiva_previa->getAcc_Cor_Prev($idSolicitud);
 			$data['idSolicitud']=$idSolicitud;
+			$data['row_firma'] = $this->mFirmas_Inspector->getFirmasR_ins($idSolicitud);
+
+
 			$data['row_inspeccion_reporte_pregunta'] = $row_inspeccion_reporte_pregunta;
 			$this->load->view('Inspector/vHeader');
 			$this->load->view('Inspector/Inspeccion/vReporte_ins',$data);
@@ -61,6 +65,16 @@
 				$this->mInspeccion_accion_correctiva_previa->update_local($data);
 				 
 			}
+		}
+		public function firmar_Rins(){
+			//Guardar imagen_Firma de los Reportes de inspeccion{
+			$fileName = $this->input->post('filename');
+			$data = $this->input->post('base64data'); 
+			$image = explode('base64,',$data); 
+			file_put_contents($fileName.'.png', base64_decode($image[1]));
+			// }
+			$data = $_POST;
+			$this->mFirmas_Inspector->firmar_Rins($data);
 		}
 	}
 ?>
