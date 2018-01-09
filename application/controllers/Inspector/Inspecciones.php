@@ -65,21 +65,36 @@ class inspecciones extends CI_Controller
 	}
 	public function Enviar(){
 		$idsolicitud = $this->input->post('idsolicitud');
-	 // echo "<br>Inicio de envio de datos";
+	 // Inicio de envio de datos";
 		$respuesta = $this->mPo_cultivo_respuesta->getRespuesta_idSol($idsolicitud);
 		$this->mPo_cultivo_respuesta->EliminarResp_online($idsolicitud);
 		foreach ($respuesta as $row_respuesta) {
 			$this->mPo_cultivo_respuesta->insert_online($row_respuesta);
 		}
-	// echo "<br>Plan orgánico enviado";
+	// Plan orgánico enviado";
 		$respuesta_inspeccion = $this->mInspeccion_reporte_respuesta->getLocal_idSol($idsolicitud);
 		$this->mInspeccion_reporte_respuesta->EliminarResp_online($idsolicitud);
 		foreach ($respuesta_inspeccion as $row_resp_ins) {
 			$this->mInspeccion_reporte_respuesta->insert_online($row_resp_ins);
 		}
-	// echo "<br>Reporte de inspección enviado";
 
-	// echo "<br>Envio de datos terminado";
+		//enviar firmas_imagen
+		$firmas = $this->mFirmas_Inspector->getFirmasLocal();
+		$this->mFirmas_Inspector->dropTable();
+		foreach ($firmas as $firma) {
+			$data = array(
+'id_firmas' => $firma->id_firmas,
+'id_operador' => $firma->id_operador,
+'nombre_firma' => $firma->nombre_firma,
+'fecha_firma' => $firma->fecha_firma,
+'id_orden' => $firma->id_orden,
+'id_pmo' => $firma->id_pmo,
+'id_ins' => $firma->id_ins,
+'url_firma' => $firma->url_firma);
+			$this->mFirmas_Inspector->insert_online($data);
+		// $this->load->view('Inspector/vFooter');
+
+		}	
 		return true;
 	}
 	public function autorizacion_orden(){

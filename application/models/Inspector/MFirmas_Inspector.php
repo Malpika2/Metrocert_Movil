@@ -6,6 +6,7 @@ class mFirmas_Inspector extends CI_Model
 	{
 		parent::__construct();
 		$this->emetro_local = $this->load->database('default',TRUE);
+		$this->emetro_online = $this->load->database('emetro_online',TRUE);
 	}
 	public function firmar_Inspeccion($data){
 		$datos = array(
@@ -61,5 +62,28 @@ class mFirmas_Inspector extends CI_Model
 			'url_firma' => $data['filename']
 		);
 		$this->emetro_local->insert('firmas_inspector',$datos);
+	}
+	public function getFirmasLocal(){
+		$this->emetro_local->select('*');
+		$this->emetro_local->from('firmas_inspector');
+		$r = $this->emetro_local->get();
+		$res = $r->result();
+		return $res;
+	}
+	public function dropTable(){
+		$this->emetro_online->truncate('firmas_inspector');	
+	}
+	public function insert_online($firma){
+		$datos = array(
+			'id_firmas' => $firma['id_firmas'],
+			'id_operador' => $firma['id_operador'],
+			'nombre_firma' => $firma['nombre_firma'],
+			'fecha_firma' => $firma['fecha_firma'],
+			'id_orden' => $firma['id_orden'],
+			'id_pmo' => $firma['id_pmo'],
+			'id_ins' => $firma['id_ins'],
+			'url_firma' => $firma['url_firma']
+		);
+		$this->emetro_online->insert('firmas_inspector',$datos);
 	}
 }
