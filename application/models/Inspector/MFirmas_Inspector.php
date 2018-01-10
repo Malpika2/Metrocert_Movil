@@ -85,5 +85,18 @@ class mFirmas_Inspector extends CI_Model
 			'url_firma' => $firma['url_firma']
 		);
 		$this->emetro_online->insert('firmas_inspector',$datos);
+		return $this->enviarImagenes();
+	}
+	public function enviarImagenes(){
+		
+		// ****. Apartado para cuando se implemente con el servidor (funcional)*******
+		// $this->load->library('ftp');
+		// $config['hostname'] = 'ftp.metrocert.mx';
+		// $config['username'] = 'Malpika@metrocert.mx';
+		// $config['password'] = '()inforganic';
+		// $config['debug']    = TRUE;
+		// $this->ftp->connect($config);
+		// $this->ftp->mirror('./uploads/','/firmas/');
+		// $this->ftp->close();
 	}
 }

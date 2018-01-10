@@ -83,19 +83,18 @@ class inspecciones extends CI_Controller
 		$this->mFirmas_Inspector->dropTable();
 		foreach ($firmas as $firma) {
 			$data = array(
-'id_firmas' => $firma->id_firmas,
-'id_operador' => $firma->id_operador,
-'nombre_firma' => $firma->nombre_firma,
-'fecha_firma' => $firma->fecha_firma,
-'id_orden' => $firma->id_orden,
-'id_pmo' => $firma->id_pmo,
-'id_ins' => $firma->id_ins,
-'url_firma' => $firma->url_firma);
-			$this->mFirmas_Inspector->insert_online($data);
-		// $this->load->view('Inspector/vFooter');
-
+				'id_firmas' => $firma->id_firmas,
+				'id_operador' => $firma->id_operador,
+				'nombre_firma' => $firma->nombre_firma,
+				'fecha_firma' => $firma->fecha_firma,
+				'id_orden' => $firma->id_orden,
+				'id_pmo' => $firma->id_pmo,
+				'id_ins' => $firma->id_ins,
+				'url_firma' => $firma->url_firma);
+			$r = $this->mFirmas_Inspector->insert_online($data);
 		}	
-		return true;
+		return $r;
+
 	}
 	public function autorizacion_orden(){
 		$idsolicitud = $this->input->post('idsolicitud');
