@@ -42,9 +42,6 @@ resizeCanvas();
 function download(dataURL, filename) {
   var blob = dataURLToBlob(dataURL);
   var url = window.URL.createObjectURL(blob);
-  alert(blob);
-  alert(dataURL);
-  alert(filename);
   var a = document.createElement("a");
   var newContent = document.createTextNode("Click para descargar firma"); 
   a.appendChild(newContent); //añade texto al div creado. 

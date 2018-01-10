@@ -16,7 +16,6 @@ $('#MensajeEnvio').append('<div class="alert alert-warning alert-dismissable fad
 		$('#MensajeEnvio').append('<div class="alert alert-success alert-dismissable fade in" style="padding:0px; margin:1px;">'+
 			'<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'+
 			'Envio de datos terminado</div>');
-    alert(data);
 		}
 	);
 }

@@ -469,7 +469,7 @@ foreach ($row_inspeccion_accion_correctiva_previa as $accionCorrectiva) {
                   <button type="button" class="hidden btn-sm btn-info col-md-12" data-action="undo">Deshacer</button>
                 </div>
                 <div class="col-md-12">
-                  <button id="btn_form_firma" <?php if(strlen($row_solicitud->firma_nombre)>0){?> disabled="disabled" <?php  } ?> type="button" class="btn-sm btn-success col-md-12" data-action="save-png">Firmar</button>
+                  <button id="btn_form_firma" <?php if($row_firma){?> disabled="disabled" <?php  } ?> type="button" class="btn-sm btn-success col-md-12" data-action="save-png">Firmar</button>
                   <button type="button" class=" hidden btn-sm btn-outline-success col-md-4" data-action="save-jpg" >Guardar como JPG</button>
                   <button type="button" class="hidden btn-sm btn-outline-success col-md-4" data-action="save-svg" >Guardar como SVG</button>
                 </div>
